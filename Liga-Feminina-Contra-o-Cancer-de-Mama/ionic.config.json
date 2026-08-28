@@ -1,0 +1,7 @@
+{
+  "name": "Liga-Feminina-Contra-o-Cancer-de-Mama",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
