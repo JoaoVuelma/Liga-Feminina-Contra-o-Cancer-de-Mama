@@ -1,20 +1,92 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="app-header">
+    <div class="app-header__brand">
+      <div class="app-header__icon"><ion-icon name="heart"></ion-icon></div>
+      <div class="app-header__titles">
+        <h1 class="font-heading">Liga Feminina</h1>
+        <p>Contra o Câncer de Mama</p>
+      </div>
+    </div>
+    <div class="app-header__badge">
+      <ion-icon name="ribbon"></ion-icon> 2026
+    </div>
+  </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="banner-outubro-rosa">
+    <div class="banner-outubro-rosa__text">
+      <span class="banner-outubro-rosa__label">OUTUBRO ROSA</span>
+      <h2 class="font-heading">Juntas pela vida</h2>
+      <p>Informar · Acolher · Mobilizar · Fortalecer</p>
+    </div>
+    <div class="banner-outubro-rosa__icon"><ion-icon name="gift"></ion-icon></div>
+  </div>
+
+  <div class="menu-cards">
+    <div class="menu-card menu-card--doacao" routerLink="/doacao">
+      <div class="menu-card__icon"><ion-icon name="heart"></ion-icon></div>
+      <div class="menu-card__text">
+        <h3>Faça uma Doação</h3>
+        <p>Contribua com nossa causa 💗</p>
+      </div>
+      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+    </div>
+
+    <div class="menu-card menu-card--loja" routerLink="/loja">
+      <div class="menu-card__icon"><ion-icon name="bag"></ion-icon></div>
+      <div class="menu-card__text">
+        <h3>Loja Beneficente</h3>
+        <p>Tênis, camisetas e guarda-chuvas</p>
+      </div>
+      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+    </div>
+
+    <div class="menu-card menu-card--eventos" routerLink="/eventos">
+      <div class="menu-card__icon"><ion-icon name="calendar"></ion-icon></div>
+      <div class="menu-card__text">
+        <h3>Eventos</h3>
+        <p>Participe ou seja patrocinador</p>
+      </div>
+      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+    </div>
+  </div>
+
+  <div class="stats" *ngIf="!carregando && estatisticas">
+    <div class="stats__item">
+      <h2 class="font-heading">{{ estatisticas.atendidas }}+</h2>
+      <p>Atendidas</p>
+    </div>
+    <div class="stats__item">
+      <h2 class="font-heading">{{ estatisticas.eventos_realizados }}</h2>
+      <p>Eventos/ano</p>
+    </div>
+    <div class="stats__item">
+      <h2 class="font-heading">{{ estatisticas.voluntarias }}+</h2>
+      <p>Voluntárias</p>
+    </div>
   </div>
 </ion-content>
+
+<ion-footer>
+  <div class="contact-bar">
+    <span><ion-icon name="call"></ion-icon> (11) 98765-4321</span>
+    <span><ion-icon name="logo-instagram"></ion-icon> @ligafeminina</span>
+  </div>
+  <ion-tab-bar>
+    <ion-tab-button routerLink="/home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Início</ion-label>
+    </ion-tab-button>
+    <ion-tab-button routerLink="/doacao">
+      <ion-icon name="heart"></ion-icon>
+      <ion-label>Doação</ion-label>
+    </ion-tab-button>
+    <ion-tab-button routerLink="/loja">
+      <ion-icon name="bag"></ion-icon>
+      <ion-label>Vendas</ion-label>
+    </ion-tab-button>
+    <ion-tab-button routerLink="/eventos">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Eventos</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
