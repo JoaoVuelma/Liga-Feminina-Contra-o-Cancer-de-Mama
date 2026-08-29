@@ -1,0 +1,65 @@
+<ion-content [fullscreen]="true" scrollY="true">
+  <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
+
+  <!-- Tela de sucesso -->
+  <div class="tela-sucesso" *ngIf="!carregando && enviado">
+    <div class="tela-sucesso__icone"><ion-icon name="checkmark-circle"></ion-icon></div>
+    <h2 class="font-heading">Proposta enviada!</h2>
+    <p>Recebemos seu interesse em patrocinar. Nossa equipe vai entrar em contato em breve pelo telefone ou e-mail informado.</p>
+    <button class="botao-voltar-eventos" (click)="irParaEventos()">Voltar para Eventos</button>
+  </div>
+
+  <!-- Formulário -->
+  <ng-container *ngIf="!carregando && !enviado">
+    <div class="topo">
+      <button class="botao-voltar" (click)="voltar()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
+      <h1>Ser Patrocinador</h1>
+    </div>
+
+    <div class="card-evento" *ngIf="evento">
+      <span class="card-evento__label">PATROCINAR EVENTO</span>
+      <strong>{{ evento.nome }}</strong>
+    </div>
+
+    <div class="intro">
+      <h2 class="font-heading">Quero ser Patrocinador 🤝</h2>
+      <p>Preencha o formulário e nossa equipe entrará em contato para apresentar as cotas de patrocínio disponíveis.</p>
+    </div>
+
+    <div class="campo">
+      <label>Nome completo *</label>
+      <ion-input [(ngModel)]="nome" placeholder="Seu nome ou razão social" class="input-form"></ion-input>
+    </div>
+
+    <div class="campo">
+      <label>Telefone / WhatsApp *</label>
+      <ion-input [(ngModel)]="telefone" placeholder="(11) 99999-9999" class="input-form"></ion-input>
+    </div>
+
+    <div class="campo">
+      <label>E-mail *</label>
+      <ion-input [(ngModel)]="email" type="email" placeholder="seuemail@exemplo.com" class="input-form"></ion-input>
+    </div>
+
+    <div class="campo">
+      <label>Como gostaria de patrocinar? *</label>
+      <div class="opcao-radio" *ngFor="let opcao of opcoes" (click)="tipoPatrocinio = opcao.valor">
+        <div class="opcao-radio__bolinha" [class.opcao-radio__bolinha--ativa]="tipoPatrocinio === opcao.valor"></div>
+        <span>{{ opcao.label }}</span>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>Conte mais sobre sua proposta (opcional)</label>
+      <ion-textarea [(ngModel)]="observacoes" placeholder="Descreva como imagina a parceria, valores aproximados, etc." rows="3" class="input-form"></ion-textarea>
+    </div>
+
+    <button class="botao-enviar" [disabled]="!formularioValido || enviando" (click)="enviarProposta()">
+      <ion-icon name="paper-plane-outline"></ion-icon>
+      {{ enviando ? 'Enviando...' : 'Enviar proposta' }}
+    </button>
+  </ng-container>
+</ion-content>
+<app-rodape-tabs></app-rodape-tabs>

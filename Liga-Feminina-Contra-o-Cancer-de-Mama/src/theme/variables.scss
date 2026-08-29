@@ -1,30 +1,27 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
 :root {
-  /* Cor principal - rosa vibrante (cards, ícones, destaques) */
-  --ion-color-primary: #E91E63;
-  --ion-color-primary-rgb: 233, 30, 99;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #cc1a58;
-  --ion-color-primary-tint: #ea3574;
-
-  /* Cor secundária - rosa/vinho escuro (rodapé, textos fortes) */
-  --ion-color-secondary: #7B1E3D;
-  --ion-color-secondary-rgb: 123, 30, 61;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #6c1a36;
-  --ion-color-secondary-tint: #893451;
-
-  /* Fundo geral - rosa bem claro */
-  --ion-background-color: #FDF2F6;
-  --ion-background-color-rgb: 253, 242, 246;
-
   /* Fontes */
   --ion-font-family: 'Poppins', sans-serif;
 }
 
 .font-heading {
   font-family: 'Playfair Display', serif;
+}
+
+:root {
+  /* Rosa Institucional (Acolhedor e Forte) */
+  --ion-color-primary: #D81B60;
+  --ion-color-primary-rgb: 216,27,96;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade: #be1854;
+  --ion-color-primary-tint: #dc3270;
+
+  /* Roxo Suave (Secundária para contraste em eventos/loja) */
+  --ion-color-secondary: #5E35B1;
+  --ion-color-secondary-rgb: 94,53,177;
+  --ion-color-secondary-contrast: #ffffff;
+
+  /* Fundo do App (Off-white para suavizar a leitura) */
+  --ion-background-color: #FAFAFA;
 }

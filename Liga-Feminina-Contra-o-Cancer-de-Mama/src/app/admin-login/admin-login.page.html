@@ -1,0 +1,24 @@
+<ion-content [fullscreen]="true" scrollY="false">
+  <div class="tela-login">
+    <button class="botao-voltar" (click)="voltar()">
+      <ion-icon name="chevron-back"></ion-icon>
+    </button>
+
+    <div class="tela-login__icone"><ion-icon name="lock-closed"></ion-icon></div>
+    <h1 class="font-heading">Acesso Administrativo</h1>
+    <p>Área restrita para gestão do app</p>
+
+    <div class="campo">
+      <ion-input [(ngModel)]="email" type="email" placeholder="E-mail" class="input-form"></ion-input>
+    </div>
+    <div class="campo">
+      <ion-input [(ngModel)]="senha" type="password" placeholder="Senha" class="input-form"></ion-input>
+    </div>
+
+    <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+    <button class="botao-entrar" [disabled]="entrando" (click)="entrar()">
+      {{ entrando ? 'Entrando...' : 'Entrar' }}
+    </button>
+  </div>
+</ion-content>

@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true" scrollY="true">
+  <div class="page-header">
+    <h1 class="font-heading">Loja Beneficente</h1>
+    <p>Produtos exclusivos · Renda para a Liga 💗</p>
+  </div>
+
+  <div class="card-retirada">
+    <div class="card-retirada__icon"><ion-icon name="location"></ion-icon></div>
+    <div class="card-retirada__texto">
+      <strong>📦 Retirada presencial</strong>
+      <p>Rua das Rosas, 456 — Jardim Paulista<br>São Paulo, SP · CEP 01452-000</p>
+      <span class="badge-horario"><ion-icon name="time-outline"></ion-icon> Seg–Sex · 9h às 17h30</span>
+    </div>
+  </div>
+  <div class="frete-info">
+    <span>Frete disponível para SP capital</span>
+    <a>Saiba mais →</a>
+  </div>
+
+  <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
+
+  <div class="produto-card" *ngFor="let produto of produtos">
+    <div class="produto-card__imagem" [style.backgroundImage]="'url(' + (produto.imagem_url || 'assets/placeholder-produto.png') + ')'">
+      <span class="produto-card__badge" *ngIf="produto.estoque <= 5 && produto.estoque > 0">EDIÇÃO LIMITADA</span>
+      <span class="produto-card__badge produto-card__badge--esgotado" *ngIf="produto.estoque === 0">ESGOTADO</span>
+    </div>
+
+    <div class="produto-card__corpo">
+      <div class="produto-card__titulo">
+        <h3>{{ produto.nome }}</h3>
+        <strong>R$ {{ produto.preco }}</strong>
+      </div>
+      <p>{{ produto.descricao }}</p>
+
+      <div class="tamanhos" *ngIf="produto.tamanhos?.length">
+        <span class="tamanhos__label">Tamanho:</span>
+        <div class="tamanhos__lista">
+          <button
+            *ngFor="let tamanho of produto.tamanhos"
+            class="tamanho-chip"
+            [class.tamanho-chip--ativo]="tamanhoSelecionado[produto.id] === tamanho"
+            (click)="selecionarTamanho(produto.id, tamanho)">
+            {{ tamanho }}
+          </button>
+        </div>
+      </div>
+
+      <button class="botao-comprar" [disabled]="produto.estoque === 0">
+        <ion-icon name="bag-outline"></ion-icon> Comprar
+      </button>
+    </div>
+  </div>
+</ion-content>
+<app-rodape-tabs></app-rodape-tabs>

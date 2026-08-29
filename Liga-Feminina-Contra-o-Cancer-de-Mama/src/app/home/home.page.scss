@@ -1,92 +1,94 @@
-.app-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  background: #fff;
-
-  &__brand { display: flex; align-items: center; gap: 12px; }
-
-  &__icon {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--ion-color-primary); color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-  }
-
-  &__titles {
-    h1 { margin: 0; font-size: 18px; }
-    p { margin: 0; font-size: 12px; color: var(--ion-color-secondary); }
-  }
-
-  &__badge {
-    display: flex; align-items: center; gap: 4px;
-    background: #FCE4EC; color: var(--ion-color-primary);
-    padding: 6px 12px; border-radius: 20px;
-    font-size: 13px; font-weight: 600;
-  }
-}
+// Atualize estas classes no seu home.page.scss
 
 .banner-outubro-rosa {
-  margin: 0 16px 20px; padding: 20px; border-radius: 20px;
-  background: linear-gradient(135deg, #EC407A, #AD1457);
-  color: #fff; display: flex; align-items: center; justify-content: space-between;
+  margin: 0 16px 20px; 
+  padding: 24px 20px; 
+  border-radius: 24px;
+  // Gradiente mais suave e moderno
+  background: linear-gradient(135deg, var(--ion-color-primary), #FF8A80);
+  color: #fff; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  box-shadow: 0 10px 20px rgba(216, 27, 96, 0.25); // Sombra colorida
 
-  &__label { font-size: 11px; font-weight: 700; letter-spacing: 1px; opacity: 0.85; }
-  h2 { margin: 4px 0; font-size: 22px; }
-  p { margin: 0; font-size: 12px; opacity: 0.9; }
+  &__label { 
+    font-size: 10px; 
+    font-weight: 800; 
+    letter-spacing: 1.5px; 
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 8px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  
+  h2 { margin: 0 0 4px; font-size: 24px; font-weight: 700; }
+  p { margin: 0; font-size: 13px; opacity: 0.95; line-height: 1.4; }
 
   &__icon {
-    width: 48px; height: 48px; border-radius: 50%;
-    background: rgba(255,255,255,0.2);
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(4px); // Efeito glassmorphism
     display: flex; align-items: center; justify-content: center;
-    font-size: 24px; flex-shrink: 0;
+    font-size: 28px; flex-shrink: 0;
   }
 }
 
-.menu-cards { display: flex; flex-direction: column; gap: 14px; padding: 0 16px 20px; }
+.menu-cards { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px; 
+  padding: 0 16px 24px; 
+}
 
 .menu-card {
-  display: flex; align-items: center; gap: 14px;
-  padding: 18px; border-radius: 18px; color: #fff;
-  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px; 
+  border-radius: 20px; 
+  color: #fff;
+  position: relative; 
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08); // Sombra suave padrão
+  transition: transform 0.2s ease;
+
+  &:active { transform: scale(0.98); } // Feedback tátil ao clicar
 
   &__icon {
-    width: 44px; height: 44px; border-radius: 50%;
+    width: 48px; height: 48px; border-radius: 14px; // Ícones quadrados arredondados são mais modernos
     background: rgba(255,255,255,0.25);
     display: flex; align-items: center; justify-content: center;
-    font-size: 20px; flex-shrink: 0;
+    font-size: 22px; flex-shrink: 0;
   }
 
   &__text {
     flex: 1;
-    h3 { margin: 0 0 2px; font-size: 16px; font-weight: 700; }
-    p { margin: 0; font-size: 12px; opacity: 0.9; }
+    h3 { margin: 0 0 4px; font-size: 17px; font-weight: 700; }
+    p { margin: 0; font-size: 13px; opacity: 0.9; }
   }
 
-  &__chevron { font-size: 20px; opacity: 0.8; }
+  &__chevron { font-size: 20px; opacity: 0.6; }
 
-  &--doacao { background: linear-gradient(135deg, #EC407A, #AD1457); }
-  &--loja { background: linear-gradient(135deg, #78909C, #37474F); }
-  &--eventos { background: linear-gradient(135deg, #AD1457, #4A148C); }
+  // Gradientes harmônicos e quentes
+  &--doacao { background: linear-gradient(135deg, #E91E63, #C2185B); }
+  &--loja { background: linear-gradient(135deg, #FF9800, #F57C00); } // Laranja remete à ação/compra sem perder o tom quente
+  &--eventos { background: linear-gradient(135deg, #7E57C2, #512DA8); }
 }
 
 .stats {
-  display: flex; padding: 0 16px 20px; gap: 8px;
+  display: flex; padding: 0 16px 24px; gap: 12px;
 
   &__item {
-    flex: 1; background: #FCE4EC; border-radius: 14px;
-    padding: 14px 8px; text-align: center;
+    flex: 1; 
+    background: #fff; 
+    border-radius: 16px;
+    padding: 16px 8px; 
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03); // Cards brancos com sombra sutil no fundo cinza claro
+    border: 1px solid rgba(0,0,0,0.02);
 
-    h2 { margin: 0; font-size: 18px; color: var(--ion-color-primary); }
-    p { margin: 4px 0 0; font-size: 11px; color: var(--ion-color-secondary); }
+    h2 { margin: 0; font-size: 22px; font-weight: 800; color: var(--ion-color-primary); }
+    p { margin: 4px 0 0; font-size: 12px; font-weight: 600; color: #757575; text-transform: uppercase; }
   }
-}
-
-.contact-bar {
-  background: var(--ion-color-secondary); color: #fff;
-  display: flex; justify-content: center; gap: 24px;
-  padding: 6px; font-size: 12px;
-
-  span { display: flex; align-items: center; gap: 4px; }
 }

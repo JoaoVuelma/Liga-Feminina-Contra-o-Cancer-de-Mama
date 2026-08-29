@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true" scrollY="true">
+  <div class="page-header">
+    <h1 class="font-heading">Eventos</h1>
+    <p>Participe, apoie ou seja nosso patrocinador 💗</p>
+  </div>
+
+  <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
+
+  <div class="evento-card" *ngFor="let evento of eventos">
+    <div class="evento-card__imagem" [style.backgroundImage]="'url(' + (evento.imagem_url || 'assets/placeholder-evento.png') + ')'">
+      <div class="evento-card__data">
+        <strong>{{ diaDoMes(evento.data) }}</strong>
+        <span>{{ mesAbreviado(evento.data) }}</span>
+        <small>{{ ano(evento.data) }}</small>
+      </div>
+      <h3 class="font-heading">{{ evento.nome }}</h3>
+    </div>
+
+    <div class="evento-card__corpo">
+      <div class="evento-card__info">
+        <span><ion-icon name="time-outline"></ion-icon> {{ evento.data | date:'dd/MM/yyyy · HH:mm' }}</span>
+        <span><ion-icon name="location-outline"></ion-icon> {{ evento.local }}</span>
+      </div>
+
+      <div class="evento-card__ingresso" *ngIf="evento.preco_ingresso">
+        <ion-icon name="ticket-outline"></ion-icon>
+        Ingresso: <strong>R$ {{ evento.preco_ingresso }}</strong>
+      </div>
+
+      <button class="botao-participar" (click)="irParaParticipar(evento.id)">
+        <ion-icon name="ticket-outline"></ion-icon> Participar do Evento
+      </button>
+      <button class="botao-patrocinador" (click)="irParaPatrocinador(evento.id)">
+        <ion-icon name="heart-outline"></ion-icon> Quero ser Patrocinador
+      </button>
+    </div>
+  </div>
+</ion-content>
+<app-rodape-tabs></app-rodape-tabs>

@@ -1,0 +1,70 @@
+<ion-content [fullscreen]="true" scrollY="false">
+  <div class="page-header">
+    <h1 class="font-heading">Doação</h1>
+    <p>Sua contribuição transforma vidas! 💗</p>
+  </div>
+
+  <div class="banner-doacao">
+    <span class="font-heading">Juntas somos mais fortes</span>
+  </div>
+
+  <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
+
+  <div class="card-doar" *ngIf="!carregando && config">
+    <div class="card-doar__header">
+      <div class="card-doar__icon"><ion-icon name="heart"></ion-icon></div>
+      <div>
+        <h3>Fazer uma doação</h3>
+        <p>Sua doação mantém as ações da Liga.</p>
+      </div>
+    </div>
+
+    <div class="valores">
+      <button
+        *ngFor="let valor of config.valores_sugeridos"
+        class="chip"
+        [class.chip--ativo]="valorSelecionado === valor && !mostrarCampoOutro"
+        (click)="selecionarValor(valor)">
+        R${{ valor }}
+      </button>
+      <button
+        class="chip"
+        [class.chip--ativo]="mostrarCampoOutro"
+        (click)="selecionarOutro()">
+        Outro
+      </button>
+    </div>
+
+    <ion-input
+      *ngIf="mostrarCampoOutro"
+      type="number"
+      placeholder="Digite o valor"
+      [(ngModel)]="valorOutro"
+      class="input-outro">
+    </ion-input>
+
+    <div class="pix-box">
+      <span class="pix-box__label">PIX CNPJ</span>
+      <strong class="pix-box__cnpj">{{ config.cnpj }}</strong>
+      <p class="pix-box__nome">Liga Feminina Contra o Câncer de Mama</p>
+      <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" class="pix-box__qrcode" alt="QR Code PIX" />
+      <button class="botao-copiar" (click)="copiarChave()">
+        <ion-icon [name]="copiado ? 'checkmark' : 'copy-outline'"></ion-icon>
+        {{ copiado ? 'Copiado!' : 'Copiar chave' }}
+      </button>
+    </div>
+
+    <button class="botao-doar" [disabled]="valorFinal <= 0">
+      Quero doar R$ {{ valorFinal }}
+    </button>
+  </div>
+
+  <div class="card-impacto" *ngIf="!carregando && textoImpacto">
+    <h3>Seu impacto</h3>
+    <div class="card-impacto__item">
+      <ion-icon name="heart"></ion-icon>
+      <span><strong>R$ {{ valorSelecionado }}</strong> {{ textoImpacto }}</span>
+    </div>
+  </div>
+</ion-content>
+<app-rodape-tabs></app-rodape-tabs>

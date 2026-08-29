@@ -1,0 +1,55 @@
+<ion-content [fullscreen]="true" scrollY="true">
+  <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
+
+  <ng-container *ngIf="!carregando && evento">
+    <div class="imagem-topo" [style.backgroundImage]="'url(' + (evento.imagem_url || 'assets/placeholder-evento.png') + ')'">
+      <button class="botao-voltar" (click)="voltar()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
+    </div>
+
+    <div class="info-boxes">
+      <div class="info-box">
+        <div class="info-box__icon"><ion-icon name="time-outline"></ion-icon></div>
+        <div>
+          <span class="info-box__label">DATA E HORÁRIO</span>
+          <strong>{{ evento.data | date:'dd/MM/yyyy · HH:mm' }}</strong>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="info-box__icon"><ion-icon name="location-outline"></ion-icon></div>
+        <div>
+          <span class="info-box__label">LOCAL</span>
+          <strong>{{ evento.local }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <h3 class="font-heading">Sobre o evento</h3>
+      <p>{{ evento.descricao }}</p>
+    </div>
+
+    <div class="secao" *ngIf="itensInclusos.length">
+      <h3 class="font-heading">O que inclui</h3>
+      <div class="item-incluso" *ngFor="let item of itensInclusos">
+        <ion-icon name="checkmark-circle"></ion-icon>
+        <span>{{ item }}</span>
+      </div>
+    </div>
+
+    <div class="valor-ingresso" *ngIf="evento.preco_ingresso">
+      <div>
+        <span class="valor-ingresso__label">VALOR DO INGRESSO</span>
+        <strong>R$ {{ evento.preco_ingresso }}</strong>
+      </div>
+      <ion-icon name="ticket-outline"></ion-icon>
+    </div>
+
+    <button class="botao-comprar" (click)="comprarIngresso()">
+      <ion-icon name="ticket-outline"></ion-icon> Compre seu ingresso
+    </button>
+    <p class="aviso-redirect">Você será redirecionado para a plataforma de ingressos</p>
+  </ng-container>
+</ion-content>
+<app-rodape-tabs></app-rodape-tabs>

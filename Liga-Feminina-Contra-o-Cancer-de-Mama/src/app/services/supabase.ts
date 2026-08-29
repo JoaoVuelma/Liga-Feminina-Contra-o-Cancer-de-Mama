@@ -78,4 +78,55 @@ export class SupabaseService {
       .on('postgres_changes', { event: '*', schema: 'public', table: tabela }, callback)
       .subscribe();
   }
+
+  async getEventoPorId(id: string) {
+    const { data, error } = await this.supabase
+      .from('eventos')
+      .select('*')
+      .eq('id', id)
+      .single();
+    if (error) throw error;
+    return data;
+  }
+
+    // ---------- AUTENTICAÇÃO (ADMIN) ----------
+  async login(email: string, senha: string) {
+    const { data, error } = await this.supabase.auth.signInWithPassword({ email, password: senha });
+    if (error) throw error;
+    return data;
+  }
+
+  async logout() {
+    const { error } = await this.supabase.auth.signOut();
+    if (error) throw error;
+  }
+
+  async getUsuarioAtual() {
+    const { data } = await this.supabase.auth.getUser();
+    return data.user;
+  }
+
+    async criarEvento(evento: any) {
+    const { data, error } = await this.supabase.from('eventos').insert(evento).select().single();
+    if (error) throw error;
+    return data;
+  }
+
+  async atualizarEvento(id: string, evento: any) {
+    const { data, error } = await this.supabase.from('eventos').update(evento).eq('id', id).select().single();
+    if (error) throw error;
+    return data;
+  }
+
+  async excluirEvento(id: string) {
+    const { error } = await this.supabase.from('eventos').delete().eq('id', id);
+    if (error) throw error;
+  }
+
+  // Igual ao getEventos, mas traz todos (inclusive inativos) para o admin
+  async getTodosEventosAdmin() {
+    const { data, error } = await this.supabase.from('eventos').select('*').order('data', { ascending: true });
+    if (error) throw error;
+    return data;
+  }
 }

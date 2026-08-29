@@ -1,0 +1,64 @@
+<ion-content [fullscreen]="true" scrollY="true">
+  <div class="topo-admin">
+    <h1 class="font-heading">Painel Admin</h1>
+    <button class="botao-sair" (click)="sair()"><ion-icon name="log-out-outline"></ion-icon></button>
+  </div>
+
+  <ion-segment [(ngModel)]="abaSelecionada">
+    <ion-segment-button value="eventos">Eventos</ion-segment-button>
+    <ion-segment-button value="produtos" disabled>Produtos</ion-segment-button>
+    <ion-segment-button value="estatisticas" disabled>Stats</ion-segment-button>
+    <ion-segment-button value="doacao" disabled>Doação</ion-segment-button>
+  </ion-segment>
+
+  <!-- ABA EVENTOS -->
+  <div *ngIf="abaSelecionada === 'eventos'">
+
+    <!-- Lista -->
+    <ng-container *ngIf="!editando">
+      <div class="ion-text-center ion-padding" *ngIf="carregando">Carregando...</div>
+
+      <div class="item-lista" *ngFor="let evento of eventos">
+        <div class="item-lista__info">
+          <strong>{{ evento.nome }}</strong>
+          <span>{{ evento.data | date:'dd/MM/yyyy HH:mm' }} · {{ evento.ativo ? 'Ativo' : 'Inativo' }}</span>
+        </div>
+        <div class="item-lista__acoes">
+          <button (click)="editarEvento(evento)"><ion-icon name="create-outline"></ion-icon></button>
+          <button (click)="excluirEvento(evento.id)"><ion-icon name="trash-outline"></ion-icon></button>
+        </div>
+      </div>
+
+      <button class="botao-novo" (click)="novoEvento()">
+        <ion-icon name="add"></ion-icon> Novo Evento
+      </button>
+    </ng-container>
+
+    <!-- Formulário -->
+    <div class="form-admin" *ngIf="editando">
+      <h3>{{ editando.id ? 'Editar Evento' : 'Novo Evento' }}</h3>
+
+      <ion-input [(ngModel)]="editando.nome" placeholder="Nome do evento" class="input-form"></ion-input>
+      <ion-textarea [(ngModel)]="editando.descricao" placeholder="Descrição" rows="3" class="input-form"></ion-textarea>
+      <ion-input [(ngModel)]="editando.data" type="datetime-local" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="editando.local" placeholder="Local" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="editando.preco_ingresso" type="number" placeholder="Preço do ingresso" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="editando.imagem_url" placeholder="URL da imagem" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="editando.link_ingresso" placeholder="Link de compra do ingresso" class="input-form"></ion-input>
+      <ion-textarea [(ngModel)]="editando.o_que_inclui" placeholder="O que inclui (uma linha por item)" rows="4" class="input-form"></ion-textarea>
+
+      <ion-item lines="none" class="item-toggle">
+        <ion-label>Evento ativo (visível no app)</ion-label>
+        <ion-toggle [(ngModel)]="editando.ativo"></ion-toggle>
+      </ion-item>
+
+      <div class="form-admin__acoes">
+        <button class="botao-cancelar" (click)="cancelarEdicao()">Cancelar</button>
+        <button class="botao-salvar" [disabled]="salvando" (click)="salvarEvento()">
+          {{ salvando ? 'Salvando...' : 'Salvar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

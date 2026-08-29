@@ -1,0 +1,12 @@
+.contact-bar {
+  background: var(--ion-color-secondary); color: #fff;
+  display: flex; justify-content: center; gap: 24px;
+  padding: 6px; font-size: 12px;
+
+  span { display: flex; align-items: center; gap: 4px; }
+}
+
+.contact-bar__admin {
+  opacity: 0.5;
+  margin-left: 4px;
+}
