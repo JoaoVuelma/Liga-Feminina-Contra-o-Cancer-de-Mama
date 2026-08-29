@@ -54,9 +54,8 @@ export class PatrocinadorPage implements OnInit {
       this.cdr.detectChanges();
     }
   }
-
-  get formularioValido(): boolean {
-    return !!(this.nome && this.telefone && this.email && this.tipoPatrocinio);
+   get formularioValido(): boolean {
+    return !!(this.nome && this.telefoneValido && this.emailValido && this.tipoPatrocinio);
   }
 
   async enviarProposta() {
@@ -88,4 +87,28 @@ export class PatrocinadorPage implements OnInit {
   irParaEventos() {
     this.router.navigate(['/eventos']);
   }
+
+    formatarTelefone(evento: any) {
+    let valor = evento.target.value.replace(/\D/g, '').slice(0, 11);
+
+    if (valor.length > 6) {
+      valor = valor.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+    } else if (valor.length > 2) {
+      valor = valor.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+    } else if (valor.length > 0) {
+      valor = valor.replace(/(\d{0,2})/, '($1');
+    }
+
+    this.telefone = valor.trim().replace(/-$/, '');
+  }
+
+  get emailValido(): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+  }
+
+  get telefoneValido(): boolean {
+    return this.telefone.replace(/\D/g, '').length === 11;
+  }
+
+ 
 }

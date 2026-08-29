@@ -181,3 +181,56 @@
     }
   }
 }
+
+.menu-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__icon, &__text, &__chevron {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:active {
+    transform: scale(0.97);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+
+  &__icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(2px);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+
+  &__text {
+    flex: 1;
+    h3 { margin: 0 0 4px; font-size: 17px; font-weight: 700; }
+    p { margin: 0; font-size: 13px; opacity: 0.9; }
+  }
+
+  &__chevron { font-size: 20px; opacity: 0.8; }
+
+  &--doacao::before { background: linear-gradient(135deg, rgba(216,27,96,0.88), rgba(194,24,91,0.75)); }
+  &--loja::before { background: linear-gradient(135deg, rgba(255,152,0,0.85), rgba(245,124,0,0.75)); }
+  &--eventos::before { background: linear-gradient(135deg, rgba(126,87,194,0.88), rgba(81,45,168,0.78)); }
+}

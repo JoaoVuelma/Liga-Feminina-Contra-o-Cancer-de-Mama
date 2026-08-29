@@ -98,3 +98,10 @@
   60% { transform: scale(1.2); }
   100% { transform: scale(1); opacity: 1; }
 }
+
+.erro-campo {
+  display: block;
+  font-size: 11px;
+  color: #D32F2F;
+  margin-top: 4px;
+}

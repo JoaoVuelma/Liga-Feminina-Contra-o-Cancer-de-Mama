@@ -27,6 +27,8 @@ export class AdminPage implements OnInit {
 
   configDoacao: any = null;
   editandoConfig = false;
+  enviandoImagem = false;
+
 
   constructor(
     private supabaseService: SupabaseService,
@@ -228,5 +230,25 @@ export class AdminPage implements OnInit {
     const numero = (p.telefone || '').replace(/\D/g, '');
     const mensagem = `Olá, ${p.nome}! Vimos seu interesse em ser patrocinador do evento "${p.eventos?.nome || ''}". Vamos conversar sobre as cotas disponíveis?`;
     return `https://wa.me/55${numero}?text=${encodeURIComponent(mensagem)}`;
+  }
+
+  async selecionarImagem(evento: any, alvo: 'evento' | 'produto') {
+    const arquivo = evento.target.files[0];
+    if (!arquivo) return;
+
+    this.enviandoImagem = true;
+    try {
+      const url = await this.supabaseService.uploadImagem(arquivo);
+      if (alvo === 'evento') {
+        this.editando.imagem_url = url;
+      } else {
+        this.editandoProduto.imagem_url = url;
+      }
+    } catch (erro) {
+      console.error('Erro ao enviar imagem:', erro);
+    } finally {
+      this.enviandoImagem = false;
+      this.cdr.detectChanges();
+    }
   }
 }

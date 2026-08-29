@@ -41,12 +41,10 @@
   padding: 24px 16px 16px;
   background-color: var(--ion-background-color);
   
-  h1 {
-    margin: 0 0 0 16px;
-    font-size: 22px;
-    font-weight: 800;
-    color: #1A1A1A;
-  }
+  h1, h2, .titulo-app {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
 
   ion-back-button {
     color: var(--ion-color-primary);
@@ -62,3 +60,4 @@
   margin: 0 16px 20px;
   border: 1px solid rgba(0,0,0,0.02);
 }
+

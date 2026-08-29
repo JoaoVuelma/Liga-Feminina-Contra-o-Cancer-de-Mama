@@ -1,16 +1,37 @@
 :root {
-  /* Cores da Marca */
+  /* Primary - Rosa */
   --ion-color-primary: #D81B60;
+  --ion-color-primary-rgb: 216, 27, 96;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #be1854;
+  --ion-color-primary-tint: #dc3270;
+
+  /* Secondary - Roxo */
   --ion-color-secondary: #5E35B1;
+  --ion-color-secondary-rgb: 94, 53, 177;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #532f9c;
+  --ion-color-secondary-tint: #6e49b9;
+
+  /* Tertiary - Laranja */
   --ion-color-tertiary: #FF9800;
-  
-  /* Força fundo claro e texto escuro globalmente */
+  --ion-color-tertiary-rgb: 255, 152, 0;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #e08600;
+  --ion-color-tertiary-tint: #ffa21a;
+
+  /* Fundo e texto */
   --ion-background-color: #FAFAFA;
   --ion-text-color: #333333;
   --ion-item-background: #FFFFFF;
+
+  /* Fonte padrão */
+  --ion-font-family: 'Poppins', sans-serif;
 }
 
-/* Sobrescreve o Dark Mode automático dos dispositivos */
 @media (prefers-color-scheme: dark) {
   :root {
     --ion-background-color: #FAFAFA;
@@ -18,4 +39,8 @@
     --ion-item-background: #FFFFFF;
     --ion-border-color: rgba(0, 0, 0, 0.1);
   }
+}
+
+.font-heading {
+  font-family: 'Playfair Display', serif;
 }

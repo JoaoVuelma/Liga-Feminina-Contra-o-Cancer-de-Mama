@@ -53,4 +53,16 @@ export class EventoDetalhePage implements OnInit {
   voltar() {
     this.router.navigate(['/eventos']);
   }
+
+    diaDoMes(data: string): string {
+    return new Date(data).getDate().toString().padStart(2, '0');
+  }
+
+  mesAbreviado(data: string): string {
+    return new Date(data).toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '').toUpperCase();
+  }
+
+  ano(data: string): string {
+    return new Date(data).getFullYear().toString();
+  }
 }

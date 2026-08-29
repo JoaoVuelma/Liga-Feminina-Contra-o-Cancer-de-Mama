@@ -7,7 +7,9 @@
   <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
 
   <div class="evento-card" *ngFor="let evento of eventos">
-    <div class="evento-card__imagem" [style.backgroundImage]="'url(' + (evento.imagem_url || 'assets/placeholder-evento.png') + ')'">
+    <div class="evento-card__imagem"
+     [class.evento-card__imagem--sem-foto]="!evento.imagem_url"
+     [style.backgroundImage]="'url(' + (evento.imagem_url || '') + ')'">
       <div class="evento-card__data">
         <strong>{{ diaDoMes(evento.data) }}</strong>
         <span>{{ mesAbreviado(evento.data) }}</span>

@@ -35,12 +35,19 @@
 
     <div class="campo">
       <label>Telefone / WhatsApp *</label>
-      <ion-input [(ngModel)]="telefone" placeholder="(11) 99999-9999" class="input-form"></ion-input>
+      <ion-input
+        [(ngModel)]="telefone"
+        (ionInput)="formatarTelefone($event)"
+        placeholder="(11) 99999-9999"
+        class="input-form">
+      </ion-input>
+      <span class="erro-campo" *ngIf="telefone && !telefoneValido">Telefone incompleto</span>
     </div>
 
     <div class="campo">
       <label>E-mail *</label>
       <ion-input [(ngModel)]="email" type="email" placeholder="seuemail@exemplo.com" class="input-form"></ion-input>
+      <span class="erro-campo" *ngIf="email && !emailValido">E-mail inválido</span>
     </div>
 
     <div class="campo">

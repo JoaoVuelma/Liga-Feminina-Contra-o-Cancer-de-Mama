@@ -2,11 +2,21 @@
   <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
 
   <ng-container *ngIf="!carregando && evento">
-    <div class="imagem-topo" [style.backgroundImage]="'url(' + (evento.imagem_url || 'assets/placeholder-evento.png') + ')'">
-      <button class="botao-voltar" (click)="voltar()">
-        <ion-icon name="chevron-back"></ion-icon>
-      </button>
+   <div class="imagem-topo"
+     [class.imagem-topo--sem-foto]="!evento.imagem_url"
+     [style.backgroundImage]="'url(' + (evento.imagem_url || '') + ')'">
+    <button class="botao-voltar" (click)="voltar()">
+      <ion-icon name="chevron-back"></ion-icon>
+    </button>
+
+    <div class="imagem-topo__conteudo">
+      <div class="imagem-topo__badges">
+        <span class="badge-data">{{ diaDoMes(evento.data) }} {{ mesAbreviado(evento.data) }} · {{ ano(evento.data) }}</span>
+        <span class="badge-status" *ngIf="evento.ativo">INSCRIÇÕES ABERTAS</span>
+      </div>
+      <h1 class="font-heading">{{ evento.nome }}</h1>
     </div>
+  </div>
 
     <div class="info-boxes">
       <div class="info-box">

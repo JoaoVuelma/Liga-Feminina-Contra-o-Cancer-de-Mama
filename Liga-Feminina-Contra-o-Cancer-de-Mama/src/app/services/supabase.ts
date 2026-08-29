@@ -188,4 +188,18 @@ export class SupabaseService {
     if (error) throw error;
     return data;
   }
+
+  async uploadImagem(arquivo: File): Promise<string> {
+    const extensao = arquivo.name.split('.').pop();
+    const nomeArquivo = `${Date.now()}.${extensao}`;
+    const { error } = await this.supabase.storage
+      .from('imagens')
+      .upload(nomeArquivo, arquivo);
+    if (error) throw error;
+
+    const { data } = this.supabase.storage
+      .from('imagens')
+      .getPublicUrl(nomeArquivo);
+    return data.publicUrl;
+  }
 }

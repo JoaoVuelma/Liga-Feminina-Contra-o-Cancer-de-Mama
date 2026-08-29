@@ -12,15 +12,16 @@
       <span class="badge-horario"><ion-icon name="time-outline"></ion-icon> Seg–Sex · 9h às 17h30</span>
     </div>
   </div>
-  <div class="frete-info">
-    <span>Frete disponível para SP capital</span>
-    <a>Saiba mais →</a>
-  </div>
+ <div class="frete-info">
+  <span>Frete disponível para SP capital</span>
+</div>
 
   <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
 
   <div class="produto-card" *ngFor="let produto of produtos">
-    <div class="produto-card__imagem" [style.backgroundImage]="'url(' + (produto.imagem_url || 'assets/placeholder-produto.png') + ')'">
+    <div class="produto-card__imagem"
+     [class.produto-card__imagem--sem-foto]="!produto.imagem_url"
+     [style.backgroundImage]="'url(\'' + (produto.imagem_url || '') + '\')'">
       <span class="produto-card__badge" *ngIf="produto.estoque <= 5 && produto.estoque > 0">EDIÇÃO LIMITADA</span>
       <span class="produto-card__badge produto-card__badge--esgotado" *ngIf="produto.estoque === 0">ESGOTADO</span>
     </div>

@@ -39,26 +39,65 @@
     <div class="form-admin" *ngIf="editando">
       <h3>{{ editando.id ? 'Editar Evento' : 'Novo Evento' }}</h3>
 
-      <ion-input [(ngModel)]="editando.nome" placeholder="Nome do evento" class="input-form"></ion-input>
-      <ion-textarea [(ngModel)]="editando.descricao" placeholder="Descrição" rows="3" class="input-form"></ion-textarea>
-      <ion-input [(ngModel)]="editando.data" type="datetime-local" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="editando.local" placeholder="Local" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="editando.preco_ingresso" type="number" placeholder="Preço do ingresso" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="editando.imagem_url" placeholder="URL da imagem" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="editando.link_ingresso" placeholder="Link de compra do ingresso" class="input-form"></ion-input>
-      <ion-textarea [(ngModel)]="editando.o_que_inclui" placeholder="O que inclui (uma linha por item)" rows="4" class="input-form"></ion-textarea>
+      <div class="form-admin" *ngIf="editando">
+  <h3>{{ editando.id ? 'Editar Evento' : 'Novo Evento' }}</h3>
 
-      <ion-item lines="none" class="item-toggle">
-        <ion-label>Evento ativo (visível no app)</ion-label>
-        <ion-toggle [(ngModel)]="editando.ativo"></ion-toggle>
-      </ion-item>
+  <div class="campo-form">
+    <label>Nome do evento</label>
+    <ion-input [(ngModel)]="editando.nome" placeholder="Ex: Corrida Outubro Rosa" class="input-form"></ion-input>
+  </div>
 
-      <div class="form-admin__acoes">
-        <button class="botao-cancelar" (click)="cancelarEdicao()">Cancelar</button>
-        <button class="botao-salvar" [disabled]="salvando" (click)="salvarEvento()">
-          {{ salvando ? 'Salvando...' : 'Salvar' }}
-        </button>
-      </div>
+  <div class="campo-form">
+    <label>Descrição</label>
+    <ion-textarea [(ngModel)]="editando.descricao" placeholder="Descreva o evento" rows="3" class="input-form"></ion-textarea>
+  </div>
+
+  <div class="campo-form">
+    <label>Data e horário</label>
+    <ion-input [(ngModel)]="editando.data" type="datetime-local" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>Local</label>
+    <ion-input [(ngModel)]="editando.local" placeholder="Ex: Parque Ibirapuera, SP" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>Preço do ingresso (R$)</label>
+    <ion-input [(ngModel)]="editando.preco_ingresso" type="number" placeholder="0,00" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>Imagem do evento</label>
+    <img *ngIf="editando.imagem_url" [src]="editando.imagem_url" class="preview-imagem" />
+    <input type="file" accept="image/*" (change)="selecionarImagem($event, 'evento')" class="input-arquivo" />
+    <span *ngIf="enviandoImagem" class="texto-enviando">Enviando imagem...</span>
+  </div>
+
+  <div class="campo-form">
+    <label>Link de compra do ingresso</label>
+    <ion-input [(ngModel)]="editando.link_ingresso" placeholder="https://..." class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>O que inclui (uma linha por item)</label>
+    <ion-textarea [(ngModel)]="editando.o_que_inclui" placeholder="Ex: Kit participante&#10;Medalha de conclusão" rows="4" class="input-form"></ion-textarea>
+  </div>
+
+  <ion-item lines="none" class="item-toggle">
+    <ion-label>Evento ativo (visível no app)</ion-label>
+    <ion-toggle [(ngModel)]="editando.ativo"></ion-toggle>
+  </ion-item>
+
+  <div class="form-admin__acoes">
+    <button class="botao-cancelar" (click)="cancelarEdicao()">Cancelar</button>
+    <button class="botao-salvar" [disabled]="salvando" (click)="salvarEvento()">
+      {{ salvando ? 'Salvando...' : 'Salvar' }}
+    </button>
+  </div>
+</div>
+
+      
     </div>
   </div>
   <!-- ABA PRODUTOS -->
@@ -80,49 +119,99 @@
     </ng-container>
 
     <div class="form-admin" *ngIf="editandoProduto">
-      <h3>{{ editandoProduto.id ? 'Editar Produto' : 'Novo Produto' }}</h3>
-      <ion-input [(ngModel)]="editandoProduto.nome" placeholder="Nome do produto" class="input-form"></ion-input>
-      <ion-textarea [(ngModel)]="editandoProduto.descricao" placeholder="Descrição" rows="3" class="input-form"></ion-textarea>
-      <ion-input [(ngModel)]="editandoProduto.preco" type="number" placeholder="Preço" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="editandoProduto.imagem_url" placeholder="URL da imagem" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="editandoProduto.tamanhos" placeholder="Tamanhos (separados por vírgula, ex: P, M, G)" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="editandoProduto.estoque" type="number" placeholder="Estoque" class="input-form"></ion-input>
-      <ion-item lines="none" class="item-toggle">
-        <ion-label>Produto ativo (visível no app)</ion-label>
-        <ion-toggle [(ngModel)]="editandoProduto.ativo"></ion-toggle>
-      </ion-item>
-      <div class="form-admin__acoes">
-        <button class="botao-cancelar" (click)="cancelarEdicaoProduto()">Cancelar</button>
-        <button class="botao-salvar" [disabled]="salvando" (click)="salvarProduto()">
-          {{ salvando ? 'Salvando...' : 'Salvar' }}
-        </button>
-      </div>
-    </div>
+  <h3>{{ editandoProduto.id ? 'Editar Produto' : 'Novo Produto' }}</h3>
+
+  <div class="campo-form">
+    <label>Nome do produto</label>
+    <ion-input [(ngModel)]="editandoProduto.nome" placeholder="Ex: Tênis Caminhada" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>Descrição</label>
+    <ion-textarea [(ngModel)]="editandoProduto.descricao" placeholder="Descreva o produto" rows="3" class="input-form"></ion-textarea>
+  </div>
+
+  <div class="campo-form">
+    <label>Preço (R$)</label>
+    <ion-input [(ngModel)]="editandoProduto.preco" type="number" placeholder="0,00" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>Imagem do produto</label>
+    <img *ngIf="editandoProduto.imagem_url" [src]="editandoProduto.imagem_url" class="preview-imagem" />
+    <input type="file" accept="image/*" (change)="selecionarImagem($event, 'produto')" class="input-arquivo" />
+    <span *ngIf="enviandoImagem" class="texto-enviando">Enviando imagem...</span>
+  </div>
+
+  <div class="campo-form">
+    <label>Tamanhos</label>
+    <ion-input [(ngModel)]="editandoProduto.tamanhos" placeholder="Ex: P, M, G" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>Estoque</label>
+    <ion-input [(ngModel)]="editandoProduto.estoque" type="number" placeholder="0" class="input-form"></ion-input>
+  </div>
+
+  <ion-item lines="none" class="item-toggle">
+    <ion-label>Produto ativo (visível no app)</ion-label>
+    <ion-toggle [(ngModel)]="editandoProduto.ativo"></ion-toggle>
+  </ion-item>
+
+  <div class="form-admin__acoes">
+    <button class="botao-cancelar" (click)="cancelarEdicaoProduto()">Cancelar</button>
+    <button class="botao-salvar" [disabled]="salvando" (click)="salvarProduto()">
+      {{ salvando ? 'Salvando...' : 'Salvar' }}
+    </button>
+  </div>
+</div>
   </div>
 
   <!-- ABA ESTATÍSTICAS -->
   <div *ngIf="abaSelecionada === 'estatisticas'">
     <div class="form-admin" *ngIf="estatisticas">
-      <h3>Estatísticas da Home</h3>
-      <ion-input [(ngModel)]="estatisticas.atendidas" type="number" placeholder="Atendidas" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="estatisticas.eventos_realizados" type="number" placeholder="Eventos realizados" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="estatisticas.voluntarias" type="number" placeholder="Voluntárias" class="input-form"></ion-input>
-      <button class="botao-salvar" [disabled]="salvando" (click)="salvarEstatisticas()">
-        {{ salvando ? 'Salvando...' : 'Salvar' }}
-      </button>
-    </div>
+  <h3>Estatísticas da Home</h3>
+
+  <div class="campo-form">
+    <label>Pessoas atendidas</label>
+    <ion-input [(ngModel)]="estatisticas.atendidas" type="number" placeholder="0" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>Eventos realizados</label>
+    <ion-input [(ngModel)]="estatisticas.eventos_realizados" type="number" placeholder="0" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>Voluntárias</label>
+    <ion-input [(ngModel)]="estatisticas.voluntarias" type="number" placeholder="0" class="input-form"></ion-input>
+  </div>
+
+  <button class="botao-salvar" [disabled]="salvando" (click)="salvarEstatisticas()">
+    {{ salvando ? 'Salvando...' : 'Salvar' }}
+  </button>
+</div>
   </div>
 
   <!-- ABA CONFIG DOAÇÃO -->
   <div *ngIf="abaSelecionada === 'doacao'">
     <div class="form-admin" *ngIf="configDoacao">
-      <h3>Configuração de Doação</h3>
-      <ion-input [(ngModel)]="configDoacao.chave_pix" placeholder="Chave PIX" class="input-form"></ion-input>
-      <ion-input [(ngModel)]="configDoacao.cnpj" placeholder="CNPJ" class="input-form"></ion-input>
-      <button class="botao-salvar" [disabled]="salvando" (click)="salvarConfigDoacao()">
-        {{ salvando ? 'Salvando...' : 'Salvar' }}
-      </button>
-    </div>
+  <h3>Configuração de Doação</h3>
+
+  <div class="campo-form">
+    <label>Chave PIX</label>
+    <ion-input [(ngModel)]="configDoacao.chave_pix" placeholder="CPF, e-mail, telefone ou chave aleatória" class="input-form"></ion-input>
+  </div>
+
+  <div class="campo-form">
+    <label>CNPJ</label>
+    <ion-input [(ngModel)]="configDoacao.cnpj" placeholder="00.000.000/0001-00" class="input-form"></ion-input>
+  </div>
+
+  <button class="botao-salvar" [disabled]="salvando" (click)="salvarConfigDoacao()">
+    {{ salvando ? 'Salvando...' : 'Salvar' }}
+  </button>
+</div>
   </div>
   <!-- ABA PATROCINADORES -->
 <div *ngIf="abaSelecionada === 'patrocinadores'">

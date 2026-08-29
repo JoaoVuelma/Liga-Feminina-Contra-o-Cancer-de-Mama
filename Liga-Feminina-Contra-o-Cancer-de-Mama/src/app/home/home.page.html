@@ -22,33 +22,36 @@
   </div>
 
   <div class="menu-cards">
-    <div class="menu-card menu-card--doacao" routerLink="/doacao">
-      <div class="menu-card__icon"><ion-icon name="heart"></ion-icon></div>
-      <div class="menu-card__text">
-        <h3>Faça uma Doação</h3>
-        <p>Contribua com nossa causa 💗</p>
-      </div>
-      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+  <div class="menu-card menu-card--doacao" routerLink="/doacao"
+     style="background-image: url('https://images.unsplash.com/photo-1769029269082-ff4c66d64764?w=600')">
+    <div class="menu-card__icon"><ion-icon name="heart"></ion-icon></div>
+    <div class="menu-card__text">
+      <h3>Faça uma Doação</h3>
+      <p>Contribua com nossa causa 💗</p>
     </div>
-
-    <div class="menu-card menu-card--loja" routerLink="/loja">
-      <div class="menu-card__icon"><ion-icon name="bag"></ion-icon></div>
-      <div class="menu-card__text">
-        <h3>Loja Beneficente</h3>
-        <p>Tênis, camisetas e guarda-chuvas</p>
-      </div>
-      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
-    </div>
-
-    <div class="menu-card menu-card--eventos" routerLink="/eventos">
-      <div class="menu-card__icon"><ion-icon name="calendar"></ion-icon></div>
-      <div class="menu-card__text">
-        <h3>Eventos</h3>
-        <p>Participe ou seja patrocinador</p>
-      </div>
-      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
-    </div>
+    <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
   </div>
+
+  <div class="menu-card menu-card--loja" routerLink="/loja"
+     style="background-image: url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?w=600')">
+    <div class="menu-card__icon"><ion-icon name="bag"></ion-icon></div>
+    <div class="menu-card__text">
+      <h3>Loja Beneficente</h3>
+      <p>Tênis, camisetas e guarda-chuvas</p>
+    </div>
+    <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+  </div>
+
+  <div class="menu-card menu-card--eventos" routerLink="/eventos"
+     style="background-image: url('https://images.unsplash.com/photo-1526929804231-3de5919d43ad?w=600')">
+    <div class="menu-card__icon"><ion-icon name="calendar"></ion-icon></div>
+    <div class="menu-card__text">
+      <h3>Eventos</h3>
+      <p>Participe ou seja patrocinador</p>
+    </div>
+    <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+  </div>
+</div>
 
   <div class="stats" *ngIf="!carregando && estatisticas">
     <div class="stats__item">
