@@ -9,7 +9,19 @@ export class SupabaseService {
   private supabase: SupabaseClient;
 
   constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      }
+    });
+  }
+
+  escutarMudancaDeSessao(callback: (logado: boolean) => void) {
+    this.supabase.auth.onAuthStateChange((evento, sessao) => {
+      callback(!!sessao);
+    });
   }
 
   // ---------- PRODUTOS (Loja) ----------
@@ -126,6 +138,53 @@ export class SupabaseService {
   // Igual ao getEventos, mas traz todos (inclusive inativos) para o admin
   async getTodosEventosAdmin() {
     const { data, error } = await this.supabase.from('eventos').select('*').order('data', { ascending: true });
+    if (error) throw error;
+    return data;
+  }
+
+    // ---------- PRODUTOS (admin) ----------
+  async getProdutosAdmin() {
+    const { data, error } = await this.supabase.from('produtos').select('*').order('nome');
+    if (error) throw error;
+    return data;
+  }
+
+  async criarProduto(produto: any) {
+    const { data, error } = await this.supabase.from('produtos').insert(produto).select().single();
+    if (error) throw error;
+    return data;
+  }
+
+  async atualizarProduto(id: string, produto: any) {
+    const { data, error } = await this.supabase.from('produtos').update(produto).eq('id', id).select().single();
+    if (error) throw error;
+    return data;
+  }
+
+  async excluirProduto(id: string) {
+    const { error } = await this.supabase.from('produtos').delete().eq('id', id);
+    if (error) throw error;
+  }
+
+  // ---------- ESTATÍSTICAS (admin) ----------
+  async atualizarEstatisticas(id: string, dados: any) {
+    const { data, error } = await this.supabase.from('estatisticas').update(dados).eq('id', id).select().single();
+    if (error) throw error;
+    return data;
+  }
+
+  // ---------- CONFIG DOAÇÃO (admin) ----------
+  async atualizarConfigDoacao(id: string, dados: any) {
+    const { data, error } = await this.supabase.from('config_doacao').update(dados).eq('id', id).select().single();
+    if (error) throw error;
+    return data;
+  }
+
+    async getPatrocinadoresAdmin() {
+    const { data, error } = await this.supabase
+      .from('patrocinadores')
+      .select('*, eventos(nome)')
+      .order('criado_em', { ascending: false });
     if (error) throw error;
     return data;
   }

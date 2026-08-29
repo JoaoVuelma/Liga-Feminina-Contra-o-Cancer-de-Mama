@@ -10,3 +10,43 @@
   opacity: 0.5;
   margin-left: 4px;
 }
+
+.contact-bar {
+  background: var(--ion-color-secondary);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+ion-tab-bar {
+  --background: #FFFFFF;
+  --border: none;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+  height: 64px;
+  padding-bottom: inset(safe-area-inset-bottom);
+}
+
+ion-tab-button {
+  --color: #A0A0A0; /* Ícones inativos em cinza claro */
+  --color-selected: var(--ion-color-primary); /* Ícone ativo na cor da marca */
+  
+  ion-icon {
+    font-size: 24px;
+    margin-bottom: 4px;
+    transition: transform 0.2s ease;
+  }
+  
+  ion-label {
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* Leve animação ao clicar na aba */
+  &[aria-selected="true"] ion-icon {
+    transform: scale(1.1);
+  }
+}

@@ -1,38 +1,105 @@
-// Atualize estas classes no seu home.page.scss
+// Força o fundo claro na home para contrastar com os cards coloridos
+:host {
+  --ion-background-color: #FAFAFA;
+  --ion-text-color: #333333;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // Separa a logo/título na esquerda e o ano na direita
+  padding: 20px 16px;
+  background-color: #FAFAFA;
+
+  &__brand { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+  }
+
+  &__icon {
+    width: 42px; 
+    height: 42px; 
+    border-radius: 50%;
+    background: #D81B60; 
+    color: #fff;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+
+    h1 { 
+      margin: 0; 
+      font-size: 18px; 
+      font-weight: 800; 
+      color: #1A1A1A; 
+    }
+    p { 
+      margin: 0; 
+      font-size: 12px; 
+      color: #666666; 
+    }
+  }
+
+  &__badge {
+    display: flex; 
+    align-items: center; 
+    gap: 6px;
+    background: #FCE4EC; 
+    color: #D81B60;
+    padding: 8px 14px; 
+    border-radius: 20px;
+    font-size: 14px; 
+    font-weight: 700;
+  }
+}
 
 .banner-outubro-rosa {
-  margin: 0 16px 20px; 
+  margin: 0 16px 24px; 
   padding: 24px 20px; 
   border-radius: 24px;
-  // Gradiente mais suave e moderno
-  background: linear-gradient(135deg, var(--ion-color-primary), #FF8A80);
+  background: linear-gradient(135deg, #E91E63, #FF8A80);
   color: #fff; 
   display: flex; 
   align-items: center; 
   justify-content: space-between;
-  box-shadow: 0 10px 20px rgba(216, 27, 96, 0.25); // Sombra colorida
+  box-shadow: 0 10px 20px rgba(233, 30, 99, 0.25);
+
+  &__text {
+    flex: 1;
+  }
 
   &__label { 
     font-size: 10px; 
     font-weight: 800; 
     letter-spacing: 1.5px; 
     text-transform: uppercase;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.25);
     padding: 4px 8px;
     border-radius: 8px;
     display: inline-block;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
   
-  h2 { margin: 0 0 4px; font-size: 24px; font-weight: 700; }
+  h2 { margin: 0 0 6px; font-size: 24px; font-weight: 700; }
   p { margin: 0; font-size: 13px; opacity: 0.95; line-height: 1.4; }
 
   &__icon {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(4px); // Efeito glassmorphism
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; flex-shrink: 0;
+    width: 56px; 
+    height: 56px; 
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 28px; 
+    flex-shrink: 0;
   }
 }
 
@@ -44,22 +111,31 @@
 }
 
 .menu-card {
-  display: flex; align-items: center; gap: 16px;
+  display: flex; 
+  align-items: center; 
+  gap: 16px;
   padding: 20px; 
   border-radius: 20px; 
   color: #fff;
-  position: relative; 
-  overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08); // Sombra suave padrão
-  transition: transform 0.2s ease;
+  text-decoration: none; 
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-  &:active { transform: scale(0.98); } // Feedback tátil ao clicar
+  &:active { 
+    transform: scale(0.97); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
 
   &__icon {
-    width: 48px; height: 48px; border-radius: 14px; // Ícones quadrados arredondados são mais modernos
+    width: 48px; 
+    height: 48px; 
+    border-radius: 14px;
     background: rgba(255,255,255,0.25);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; flex-shrink: 0;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 22px; 
+    flex-shrink: 0;
   }
 
   &__text {
@@ -68,27 +144,40 @@
     p { margin: 0; font-size: 13px; opacity: 0.9; }
   }
 
-  &__chevron { font-size: 20px; opacity: 0.6; }
+  &__chevron { font-size: 20px; opacity: 0.7; }
 
-  // Gradientes harmônicos e quentes
-  &--doacao { background: linear-gradient(135deg, #E91E63, #C2185B); }
-  &--loja { background: linear-gradient(135deg, #FF9800, #F57C00); } // Laranja remete à ação/compra sem perder o tom quente
+  &--doacao { background: linear-gradient(135deg, #D81B60, #C2185B); }
+  &--loja { background: linear-gradient(135deg, #FF9800, #F57C00); }
   &--eventos { background: linear-gradient(135deg, #7E57C2, #512DA8); }
 }
 
 .stats {
-  display: flex; padding: 0 16px 24px; gap: 12px;
+  display: flex; 
+  padding: 0 16px 30px; 
+  gap: 12px;
 
   &__item {
     flex: 1; 
-    background: #fff; 
+    background: #FFFFFF; 
     border-radius: 16px;
     padding: 16px 8px; 
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03); // Cards brancos com sombra sutil no fundo cinza claro
+    box-shadow: 0 6px 12px rgba(0,0,0,0.04);
     border: 1px solid rgba(0,0,0,0.02);
 
-    h2 { margin: 0; font-size: 22px; font-weight: 800; color: var(--ion-color-primary); }
-    p { margin: 4px 0 0; font-size: 12px; font-weight: 600; color: #757575; text-transform: uppercase; }
+    h2 { 
+      margin: 0; 
+      font-size: 22px; 
+      font-weight: 800; 
+      color: #D81B60; 
+    }
+    p { 
+      margin: 4px 0 0; 
+      font-size: 11px; 
+      font-weight: 700; 
+      color: #757575; 
+      text-transform: uppercase; 
+      letter-spacing: 0.5px;
+    }
   }
 }

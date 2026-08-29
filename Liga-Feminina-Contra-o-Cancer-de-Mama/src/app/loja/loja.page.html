@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <button class="botao-comprar" [disabled]="produto.estoque === 0">
+      <button class="botao-comprar" [disabled]="produto.estoque === 0" (click)="comprarProduto(produto)">
         <ion-icon name="bag-outline"></ion-icon> Comprar
       </button>
     </div>

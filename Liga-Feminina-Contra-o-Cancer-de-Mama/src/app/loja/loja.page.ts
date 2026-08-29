@@ -35,4 +35,12 @@ export class LojaPage implements OnInit {
   selecionarTamanho(produtoId: string, tamanho: string) {
     this.tamanhoSelecionado[produtoId] = tamanho;
   }
+
+    comprarProduto(produto: any) {
+    const tamanho = this.tamanhoSelecionado[produto.id];
+    let mensagem = `Olá! Tenho interesse em comprar: ${produto.nome} (R$ ${produto.preco}).`;
+    if (tamanho) mensagem += ` Tamanho: ${tamanho}.`;
+    const url = `https://wa.me/5511987654321?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+  }
 }

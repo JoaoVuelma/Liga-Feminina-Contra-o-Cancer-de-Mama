@@ -45,9 +45,9 @@ export class EventoDetalhePage implements OnInit {
   }
 
   comprarIngresso() {
-    if (this.evento?.link_ingresso) {
-      window.open(this.evento.link_ingresso, '_blank');
-    }
+    const mensagem = `Olá! Tenho interesse em comprar ingresso para o evento "${this.evento.nome}" (${new Date(this.evento.data).toLocaleDateString('pt-BR')}).`;
+    const url = `https://wa.me/5554999976616?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
   }
 
   voltar() {

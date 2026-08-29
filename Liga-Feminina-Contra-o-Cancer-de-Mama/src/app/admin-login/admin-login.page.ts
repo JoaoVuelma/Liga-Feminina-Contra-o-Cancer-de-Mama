@@ -24,6 +24,13 @@ export class AdminLoginPage {
     private cdr: ChangeDetectorRef
   ) {}
 
+  async ngOnInit() {
+    const usuario = await this.supabaseService.getUsuarioAtual();
+    if (usuario) {
+      this.router.navigate(['/admin']);
+    }
+  }
+
   async entrar() {
     this.erro = '';
     this.entrando = true;

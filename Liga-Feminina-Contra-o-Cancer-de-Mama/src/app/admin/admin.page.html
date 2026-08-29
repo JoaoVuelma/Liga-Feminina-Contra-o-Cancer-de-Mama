@@ -4,11 +4,12 @@
     <button class="botao-sair" (click)="sair()"><ion-icon name="log-out-outline"></ion-icon></button>
   </div>
 
-  <ion-segment [(ngModel)]="abaSelecionada">
+  <ion-segment [(ngModel)]="abaSelecionada" scrollable="true">
     <ion-segment-button value="eventos">Eventos</ion-segment-button>
-    <ion-segment-button value="produtos" disabled>Produtos</ion-segment-button>
-    <ion-segment-button value="estatisticas" disabled>Stats</ion-segment-button>
-    <ion-segment-button value="doacao" disabled>Doação</ion-segment-button>
+    <ion-segment-button value="produtos">Produtos</ion-segment-button>
+    <ion-segment-button value="estatisticas">Stats</ion-segment-button>
+    <ion-segment-button value="doacao">Doação</ion-segment-button>
+    <ion-segment-button value="patrocinadores">Patroc.</ion-segment-button>
   </ion-segment>
 
   <!-- ABA EVENTOS -->
@@ -60,5 +61,91 @@
       </div>
     </div>
   </div>
+  <!-- ABA PRODUTOS -->
+  <div *ngIf="abaSelecionada === 'produtos'">
+    <ng-container *ngIf="!editandoProduto">
+      <div class="item-lista" *ngFor="let produto of produtos">
+        <div class="item-lista__info">
+          <strong>{{ produto.nome }}</strong>
+          <span>R$ {{ produto.preco }} · Estoque: {{ produto.estoque }} · {{ produto.ativo ? 'Ativo' : 'Inativo' }}</span>
+        </div>
+        <div class="item-lista__acoes">
+          <button (click)="editarProduto(produto)"><ion-icon name="create-outline"></ion-icon></button>
+          <button (click)="excluirProduto(produto.id)"><ion-icon name="trash-outline"></ion-icon></button>
+        </div>
+      </div>
+      <button class="botao-novo" (click)="novoProduto()">
+        <ion-icon name="add"></ion-icon> Novo Produto
+      </button>
+    </ng-container>
 
+    <div class="form-admin" *ngIf="editandoProduto">
+      <h3>{{ editandoProduto.id ? 'Editar Produto' : 'Novo Produto' }}</h3>
+      <ion-input [(ngModel)]="editandoProduto.nome" placeholder="Nome do produto" class="input-form"></ion-input>
+      <ion-textarea [(ngModel)]="editandoProduto.descricao" placeholder="Descrição" rows="3" class="input-form"></ion-textarea>
+      <ion-input [(ngModel)]="editandoProduto.preco" type="number" placeholder="Preço" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="editandoProduto.imagem_url" placeholder="URL da imagem" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="editandoProduto.tamanhos" placeholder="Tamanhos (separados por vírgula, ex: P, M, G)" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="editandoProduto.estoque" type="number" placeholder="Estoque" class="input-form"></ion-input>
+      <ion-item lines="none" class="item-toggle">
+        <ion-label>Produto ativo (visível no app)</ion-label>
+        <ion-toggle [(ngModel)]="editandoProduto.ativo"></ion-toggle>
+      </ion-item>
+      <div class="form-admin__acoes">
+        <button class="botao-cancelar" (click)="cancelarEdicaoProduto()">Cancelar</button>
+        <button class="botao-salvar" [disabled]="salvando" (click)="salvarProduto()">
+          {{ salvando ? 'Salvando...' : 'Salvar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABA ESTATÍSTICAS -->
+  <div *ngIf="abaSelecionada === 'estatisticas'">
+    <div class="form-admin" *ngIf="estatisticas">
+      <h3>Estatísticas da Home</h3>
+      <ion-input [(ngModel)]="estatisticas.atendidas" type="number" placeholder="Atendidas" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="estatisticas.eventos_realizados" type="number" placeholder="Eventos realizados" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="estatisticas.voluntarias" type="number" placeholder="Voluntárias" class="input-form"></ion-input>
+      <button class="botao-salvar" [disabled]="salvando" (click)="salvarEstatisticas()">
+        {{ salvando ? 'Salvando...' : 'Salvar' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- ABA CONFIG DOAÇÃO -->
+  <div *ngIf="abaSelecionada === 'doacao'">
+    <div class="form-admin" *ngIf="configDoacao">
+      <h3>Configuração de Doação</h3>
+      <ion-input [(ngModel)]="configDoacao.chave_pix" placeholder="Chave PIX" class="input-form"></ion-input>
+      <ion-input [(ngModel)]="configDoacao.cnpj" placeholder="CNPJ" class="input-form"></ion-input>
+      <button class="botao-salvar" [disabled]="salvando" (click)="salvarConfigDoacao()">
+        {{ salvando ? 'Salvando...' : 'Salvar' }}
+      </button>
+    </div>
+  </div>
+  <!-- ABA PATROCINADORES -->
+<div *ngIf="abaSelecionada === 'patrocinadores'">
+  <div class="card-patrocinador" *ngFor="let p of patrocinadores">
+    <div class="card-patrocinador__topo">
+      <strong>{{ p.nome }}</strong>
+      <span class="tag-tipo">{{ p.tipo_patrocinio }}</span>
+    </div>
+    <p class="card-patrocinador__evento" *ngIf="p.eventos?.nome">
+      <ion-icon name="calendar-outline"></ion-icon> {{ p.eventos.nome }}
+    </p>
+    <p class="card-patrocinador__obs" *ngIf="p.observacoes">"{{ p.observacoes }}"</p>
+    <p class="card-patrocinador__data">{{ p.criado_em | date:'dd/MM/yyyy HH:mm' }}</p>
+
+    <div class="card-patrocinador__acoes">
+      <a class="botao-contato botao-contato--whats" [href]="linkWhatsapp(p)" target="_blank">
+        <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp
+      </a>
+      <a class="botao-contato botao-contato--email" [href]="'mailto:' + p.email">
+        <ion-icon name="mail-outline"></ion-icon> E-mail
+      </a>
+    </div>
+  </div>
+  <p class="ion-text-center" *ngIf="!patrocinadores.length" style="color:#9AA5AD; font-size:13px; margin-top: 20px;">Nenhuma proposta recebida ainda.</p>
+</div>
 </ion-content>
