@@ -3,8 +3,8 @@
     <div class="app-header__brand">
       <div class="app-header__icon"><ion-icon name="heart"></ion-icon></div>
       <div class="app-header__titles">
-        <h1 class="font-heading">Liga Feminina</h1>
-        <p>Contra o Câncer de Mama</p>
+        <h1 class="font-heading">Liga Feminina </h1>
+        <p>de Combate ao Câncer de NH</p>
       </div>
     </div>
     <div class="app-header__badge">
@@ -12,46 +12,57 @@
     </div>
   </div>
 
-  <div class="banner-outubro-rosa">
+  <!-- <div class="banner-outubro-rosa">
     <div class="banner-outubro-rosa__text">
       <span class="banner-outubro-rosa__label">OUTUBRO ROSA</span>
       <h2 class="font-heading">Juntas pela vida</h2>
       <p>Informar · Acolher · Mobilizar · Fortalecer</p>
     </div>
     <div class="banner-outubro-rosa__icon"><ion-icon name="gift"></ion-icon></div>
-  </div>
+  </div> -->
+  
 
   <div class="menu-cards">
-  <div class="menu-card menu-card--doacao" routerLink="/doacao"
-     style="background-image: url('https://images.unsplash.com/photo-1769029269082-ff4c66d64764?w=600')">
-    <div class="menu-card__icon"><ion-icon name="heart"></ion-icon></div>
-    <div class="menu-card__text">
-      <h3>Faça uma Doação</h3>
-      <p>Contribua com nossa causa 💗</p>
+    <div class="menu-card menu-card--doacao" routerLink="/doacao"
+      style="background-image: url('https://images.unsplash.com/photo-1769029269082-ff4c66d64764?w=600')">
+      <div class="menu-card__icon"><ion-icon name="heart"></ion-icon></div>
+      <div class="menu-card__text">
+        <h3>Faça uma Doação</h3>
+        <p>Contribua com nossa causa 💗</p>
+      </div>
+      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
     </div>
-    <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+
+    <div class="menu-card menu-card--loja" routerLink="/loja"
+      style="background-image: url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?w=600')">
+      <div class="menu-card__icon"><ion-icon name="bag"></ion-icon></div>
+      <div class="menu-card__text">
+        <h3>Loja Beneficente</h3>
+        <p>Tênis, camisetas e guarda-chuvas</p>
+      </div>
+      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+    </div>
+
+    <div class="menu-card menu-card--eventos" routerLink="/eventos"
+      style="background-image: url('https://images.unsplash.com/photo-1526929804231-3de5919d43ad?w=600')">
+      <div class="menu-card__icon"><ion-icon name="calendar"></ion-icon></div>
+      <div class="menu-card__text">
+        <h3>Eventos</h3>
+        <p>Participe ou seja patrocinador</p>
+      </div>
+      <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+    </div>
   </div>
 
-  <div class="menu-card menu-card--loja" routerLink="/loja"
-     style="background-image: url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?w=600')">
-    <div class="menu-card__icon"><ion-icon name="bag"></ion-icon></div>
-    <div class="menu-card__text">
-      <h3>Loja Beneficente</h3>
-      <p>Tênis, camisetas e guarda-chuvas</p>
-    </div>
-    <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
+  <div class="banner-video">
+    <iframe
+      src="https://www.youtube.com/embed/6VC2TwMHlQE?autoplay=1&mute=1&playsinline=1&loop=1&playlist=6VC2TwMHlQE"
+      title="Vídeo institucional - Liga Feminina"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
   </div>
-
-  <div class="menu-card menu-card--eventos" routerLink="/eventos"
-     style="background-image: url('https://images.unsplash.com/photo-1526929804231-3de5919d43ad?w=600')">
-    <div class="menu-card__icon"><ion-icon name="calendar"></ion-icon></div>
-    <div class="menu-card__text">
-      <h3>Eventos</h3>
-      <p>Participe ou seja patrocinador</p>
-    </div>
-    <ion-icon class="menu-card__chevron" name="chevron-forward"></ion-icon>
-  </div>
-</div>
 
   <div class="stats" *ngIf="!carregando && estatisticas">
     <div class="stats__item">

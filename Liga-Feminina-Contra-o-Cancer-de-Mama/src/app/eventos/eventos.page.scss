@@ -1,5 +1,5 @@
 .page-header {
-  padding: calc(env(safe-area-inset-top, 20px) + 12px) 16px 8px;
+  padding: calc(var(--area-segura-topo) + 4px) 16px 8px;
   h1 { margin: 0; font-size: 22px; color: var(--ion-color-secondary); }
   p { margin: 2px 0 0; font-size: 12px; color: #7A8A99; }
 }

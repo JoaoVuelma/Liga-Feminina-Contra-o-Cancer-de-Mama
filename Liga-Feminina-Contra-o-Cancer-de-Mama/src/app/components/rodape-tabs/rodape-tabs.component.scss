@@ -1,9 +1,30 @@
-.contact-bar {
-  background: var(--ion-color-secondary); color: #fff;
-  display: flex; justify-content: center; gap: 24px;
-  padding: 6px; font-size: 12px;
+ion-footer {
+  padding-bottom: var(--area-segura-base);
+}
 
-  span { display: flex; align-items: center; gap: 4px; }
+.contact-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  background: var(--ion-color-secondary);
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  &__admin {
+    opacity: 0.5;
+    margin-left: 4px;
+  }
 }
 
 .contact-bar__admin {

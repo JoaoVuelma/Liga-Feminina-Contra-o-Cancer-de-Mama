@@ -1,0 +1,60 @@
+<ion-content [fullscreen]="true" scrollY="true">
+  <div class="topo">
+    <button class="botao-voltar" (click)="voltar()">
+      <ion-icon name="chevron-back"></ion-icon>
+    </button>
+    <h1 class="font-heading">Atendimento</h1>
+  </div>
+
+  <p class="subtitulo">Liga Feminina de Combate ao Câncer de Novo Hamburgo</p>
+
+  <div class="secao">
+    <div class="secao__icon"><ion-icon name="time-outline"></ion-icon></div>
+    <div>
+      <strong>Segunda a sexta-feira</strong>
+      <p>08h às 12h | 13h às 17h</p>
+      <span class="observacao">*sexta à tarde, apenas expediente interno</span>
+    </div>
+  </div>
+
+  <a class="secao secao--link" href="https://www.google.com/maps/search/?api=1&query=Rua+Tupi+282+Rio+Branco+Novo+Hamburgo+RS" target="_blank">
+    <div class="secao__icon"><ion-icon name="location-outline"></ion-icon></div>
+    <div>
+      <strong>Rua Tupi, Nº 282</strong>
+      <p>Bairro Rio Branco — Novo Hamburgo, RS</p>
+      <span class="observacao">(rua atrás da Carburgo)</span>
+    </div>
+    <ion-icon class="secao__seta" name="chevron-forward"></ion-icon>
+  </a>
+
+  <a class="secao secao--link" href="https://wa.me/5551991083518" target="_blank">
+    <div class="secao__icon secao__icon--whats"><ion-icon name="logo-whatsapp"></ion-icon></div>
+    <div><strong>51 99108-3518</strong></div>
+    <ion-icon class="secao__seta" name="chevron-forward"></ion-icon>
+  </a>
+
+  <a class="secao secao--link" href="https://wa.me/5551999860222" target="_blank">
+    <div class="secao__icon secao__icon--whats"><ion-icon name="logo-whatsapp"></ion-icon></div>
+    <div><strong>51 99986-0222</strong></div>
+    <ion-icon class="secao__seta" name="chevron-forward"></ion-icon>
+  </a>
+
+  <a class="secao secao--link" href="tel:+555130361590">
+    <div class="secao__icon"><ion-icon name="call-outline"></ion-icon></div>
+    <div><strong>51 3036-1590</strong></div>
+    <ion-icon class="secao__seta" name="chevron-forward"></ion-icon>
+  </a>
+
+  <a class="secao secao--link" href="mailto:lfcc.tupi@sinos.net">
+    <div class="secao__icon"><ion-icon name="mail-outline"></ion-icon></div>
+    <div><strong>lfcc.tupi&#64;sinos.net</strong></div>
+    <ion-icon class="secao__seta" name="chevron-forward"></ion-icon>
+  </a>
+
+  <a class="secao secao--link" href="mailto:ligafeminina@sinos.net">
+    <div class="secao__icon"><ion-icon name="mail-outline"></ion-icon></div>
+    <div><strong>ligafeminina&#64;sinos.net</strong></div>
+    <ion-icon class="secao__seta" name="chevron-forward"></ion-icon>
+  </a>
+</ion-content>
+<app-rodape-tabs></app-rodape-tabs>

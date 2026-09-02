@@ -10,54 +10,70 @@
 
   <div *ngIf="carregando" class="ion-text-center ion-padding">Carregando...</div>
 
-  <div class="card-doar" *ngIf="!carregando && config">
-    <div class="card-doar__header">
-      <div class="card-doar__icon"><ion-icon name="heart"></ion-icon></div>
-      <div>
-        <h3>Fazer uma doação</h3>
-        <p>Sua doação mantém as ações da Liga.</p>
-      </div>
+  <div class="card-doar" *ngIf="!carregando && config && temChavePix">
+  <div class="card-doar__header">
+    <div class="card-doar__icon"><ion-icon name="heart"></ion-icon></div>
+    <div>
+      <h3>Fazer uma doação</h3>
+      <p>Sua doação mantém as ações da Liga.</p>
     </div>
+  </div>
 
-    <div class="valores">
-      <button
-        *ngFor="let valor of config.valores_sugeridos"
-        class="chip"
-        [class.chip--ativo]="valorSelecionado === valor && !mostrarCampoOutro"
-        (click)="selecionarValor(valor)">
-        R${{ valor }}
-      </button>
-      <button
-        class="chip"
-        [class.chip--ativo]="mostrarCampoOutro"
-        (click)="selecionarOutro()">
-        Outro
-      </button>
-    </div>
-
-    <ion-input
-      *ngIf="mostrarCampoOutro"
-      type="number"
-      placeholder="Digite o valor"
-      [(ngModel)]="valorOutro"
-      class="input-outro">
-    </ion-input>
-
-    <div class="pix-box">
-      <span class="pix-box__label">PIX CNPJ</span>
-      <strong class="pix-box__cnpj">{{ config.cnpj }}</strong>
-      <p class="pix-box__nome">Liga Feminina Contra o Câncer de Mama</p>
-      <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" class="pix-box__qrcode" alt="QR Code PIX" />
-      <button class="botao-copiar" (click)="copiarChave()">
-        <ion-icon [name]="copiado ? 'checkmark' : 'copy-outline'"></ion-icon>
-        {{ copiado ? 'Copiado!' : 'Copiar chave' }}
-      </button>
-    </div>
-
-    <button class="botao-doar" [disabled]="valorFinal <= 0">
-      Quero doar R$ {{ valorFinal }}
+  <div class="valores">
+    <button
+      *ngFor="let valor of config.valores_sugeridos"
+      class="chip"
+      [class.chip--ativo]="valorSelecionado === valor && !mostrarCampoOutro"
+      (click)="selecionarValor(valor)">
+      R${{ valor }}
+    </button>
+    <button
+      class="chip"
+      [class.chip--ativo]="mostrarCampoOutro"
+      (click)="selecionarOutro()">
+      Outro
     </button>
   </div>
+
+  <ion-input
+    *ngIf="mostrarCampoOutro"
+    type="number"
+    placeholder="Digite o valor"
+    [(ngModel)]="valorOutro"
+    class="input-outro">
+  </ion-input>
+
+  <div class="pix-box">
+    <span class="pix-box__label">PIX CNPJ</span>
+    <strong class="pix-box__cnpj">{{ config.cnpj }}</strong>
+    <p class="pix-box__nome">Liga Feminina Contra o Câncer de Mama</p>
+    <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" class="pix-box__qrcode" alt="QR Code PIX" />
+    <button class="botao-copiar" (click)="copiarChave()">
+      <ion-icon [name]="copiado ? 'checkmark' : 'copy-outline'"></ion-icon>
+      {{ copiado ? 'Copiado!' : 'Copiar chave' }}
+    </button>
+  </div>
+
+  <button class="botao-doar" [disabled]="valorFinal <= 0">
+    Quero doar R$ {{ valorFinal }}
+  </button>
+  </div>
+
+  <!-- Card Doação da Sorte (aparece quando não tem PIX cadastrado) -->
+  <a class="card-sorte" *ngIf="!carregando && !temChavePix" href="https://liga.icatudoacaodasorte.com.br/" target="_blank">
+    <div class="card-sorte__topo">
+      <span class="card-sorte__badge">💗 Doação da Sorte</span>
+    </div>
+    <h3 class="font-heading">Liga Feminina de Combate ao Câncer</h3>
+    <p>A Liga tem como missão vencer o câncer através do trabalho voluntário de prevenção junto à comunidade, dando assistência para pessoas de baixa renda portadoras da doença — desde curativos até acompanhamento psicológico.</p>
+    <div class="card-sorte__valor">
+      <ion-icon name="cash-outline"></ion-icon>
+      A partir de R$ 5,00 você já pode começar a fazer a diferença
+    </div>
+    <div class="card-sorte__botao">
+      Quero doar agora <ion-icon name="chevron-forward"></ion-icon>
+    </div>
+  </a>
 
   <div class="card-impacto" *ngIf="!carregando && textoImpacto">
     <h3>Seu impacto</h3>

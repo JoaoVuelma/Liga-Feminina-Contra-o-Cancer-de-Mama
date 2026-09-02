@@ -1,7 +1,8 @@
 .tela-login {
   display: flex; flex-direction: column; align-items: center;
   padding: 80px 24px 24px; height: 100%; position: relative;
-
+  padding: calc(var(--area-segura-topo) + 40px) 24px 24px;
+  
   &__icone {
     width: 60px; height: 60px; border-radius: 50%;
     background: #FCE4EC; color: var(--ion-color-primary);

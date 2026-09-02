@@ -2,7 +2,7 @@
   display: flex; align-items: center; gap: 12px;
   padding: calc(env(safe-area-inset-top, 16px) + 8px) 16px 12px;
   background: #fff;
-
+  padding: calc(var(--area-segura-topo) + 4px) 16px 12px;
   h1 { margin: 0; font-size: 17px; color: var(--ion-color-secondary); }
 }
 

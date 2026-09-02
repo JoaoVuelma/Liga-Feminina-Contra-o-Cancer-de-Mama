@@ -1,4 +1,7 @@
 :root {
+  --area-segura-topo: env(safe-area-inset-top, 24px);
+  --area-segura-base: env(safe-area-inset-bottom, 0px);
+
   /* Primary - Rosa */
   --ion-color-primary: #D81B60;
   --ion-color-primary-rgb: 216, 27, 96;
@@ -44,3 +47,4 @@
 .font-heading {
   font-family: 'Playfair Display', serif;
 }
+

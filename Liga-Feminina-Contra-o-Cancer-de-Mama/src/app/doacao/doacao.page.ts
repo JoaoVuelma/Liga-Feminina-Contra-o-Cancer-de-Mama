@@ -49,6 +49,10 @@ export class DoacaoPage implements OnInit {
     }
   }
 
+  get temChavePix(): boolean {
+    return !!(this.config?.chave_pix && this.config.chave_pix.trim().length > 0);
+  }
+
   async gerarQrCode() {
     if (!this.config?.chave_pix) return;
     this.qrCodeUrl = await QRCode.toDataURL(this.config.chave_pix, {

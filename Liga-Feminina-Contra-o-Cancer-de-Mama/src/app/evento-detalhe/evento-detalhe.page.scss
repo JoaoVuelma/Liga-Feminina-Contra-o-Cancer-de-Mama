@@ -69,6 +69,8 @@
   background: rgba(255,255,255,0.9); border: none;
   display: flex; align-items: center; justify-content: center;
   font-size: 18px; color: var(--ion-color-secondary);
+
+  top: calc(var(--area-segura-topo) + 8px);
 }
 
 .info-boxes {

@@ -1,5 +1,6 @@
 .page-header {
   padding: 28px 16px 6px;
+  padding: calc(var(--area-segura-topo) + 4px) 16px 8px;
   h1 { margin: 0; font-size: 20px; color: var(--ion-color-secondary); }
   p { margin: 2px 0 0; font-size: 12px; color: #7A8A99; }
 }
@@ -147,5 +148,58 @@
     margin-bottom: 8px;
 
     ion-icon { color: var(--ion-color-primary); font-size: 16px; flex-shrink: 0; }
+  }
+}
+
+.card-sorte {
+  display: block;
+  margin: 0 16px 16px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+
+  &__topo { margin-bottom: 10px; }
+
+  &__badge {
+    background: #FCE4EC;
+    color: var(--ion-color-primary);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 12px;
+  }
+
+  h3 { margin: 0 0 8px; font-size: 16px; color: var(--ion-color-secondary); }
+  p { margin: 0 0 14px; font-size: 12px; color: #7A8A99; line-height: 1.5; }
+
+  &__valor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #FCE4EC;
+    color: var(--ion-color-primary);
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 14px;
+
+    ion-icon { font-size: 16px; flex-shrink: 0; }
+  }
+
+  &__botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #EC407A, #AD1457);
+    color: #fff;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
   }
 }

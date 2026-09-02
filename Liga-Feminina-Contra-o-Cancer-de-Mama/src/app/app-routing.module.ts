@@ -55,6 +55,10 @@ const routes: Routes = [
     loadComponent: () => import('./admin/admin.page').then(m => m.AdminPage),
     canActivate: [somenteAdminGuard]
   },
+  {
+    path: 'contato',
+    loadComponent: () => import('./contato/contato.page').then(m => m.ContatoPage)
+  },
 ];
 
 @NgModule({
